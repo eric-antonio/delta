@@ -12,9 +12,9 @@ import {
 function Hero() {
   return (
     <HeroSection>
-      <HeroVideo></HeroVideo>
+      <HeroVideo src="./assets/hero.mp4" />
       <Container>
-        <MainHeading> Your data is secure with us!</MainHeading>
+        <MainHeading> Your data is secure with us.</MainHeading>
         <HeroText>
           We provide the best security systems for the clientes all over the
           world
