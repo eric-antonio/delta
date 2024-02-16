@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRProject, Fatimes } from "react-icons/fa";
 import { CgMenuRight } from "react-icons-cg";
 import { IconContext } from "react-icons";
@@ -15,8 +15,58 @@ import {
 import { useLocation, useHistory } from "react-router-dom";
 import { data } from "../../data/NavbarData";
 import "./styles";
+import { color } from "framer-motion";
 function Navbar() {
-  return <div>Navbar</div>;
+  const [show, setShow] = useState(false);
+  let history = useHistory();
+  let location = useLocation();
+  const handleClick = () => {
+    setShow(!show);
+  };
+
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+
+    element.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  const closeMobileMenu = (to, id) => {
+    if (id && location.pathname === "/") {
+      scrollTo(id);
+    }
+
+    history.push(to);
+    setShow(false);
+  };
+
+  return (
+    <IconContext.Provider value={{ color: "#fff" }}>
+      <Nav>
+        <NavbarContainer>
+          <NavLogo to="/">
+            <NavIcon src="./assets/logo.png" alt="logo">
+              Delta
+            </NavIcon>
+          </NavLogo>
+          <MobileIcon onClick={handleClick}>
+            {" "}
+            {show ? <Fatimes /> : <CgMenuRight />}
+          </MobileIcon>
+          <NavMenu>
+            {data.map((el, index) => (
+              <NavItem key={index}>
+                <NavLinks onClick={() => closeMobileMenu(el.to, el.id)}>
+                  {el.text}
+                </NavLinks>
+              </NavItem>
+            ))}
+          </NavMenu>
+        </NavbarContainer>
+      </Nav>
+    </IconContext.Provider>
+  );
 }
 
 export default Navbar;
