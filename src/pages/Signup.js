@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Form from "../components/Form/index";
 
-function Signup() {
+function SignUp() {
   return (
-    <div>Signup</div>
-  )
+    <>
+      <Form />
+    </>
+  );
 }
 
-export default Signup
+export default SignUp;

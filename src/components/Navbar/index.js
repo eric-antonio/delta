@@ -38,7 +38,7 @@ const Navbar = () => {
       scrollTo(id);
     }
 
-    navigate.push(to);
+    navigate(to);
     setShow(false);
   };
 
