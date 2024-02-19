@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FaRProject, Fatimes } from "react-icons/fa";
-import { CgMenuRight } from "react-icons-cg";
+import { FaRegProject, FaTimes } from "react-icons/fa";
+import { CgMenuRight } from "react-icons/cg";
 import { IconContext } from "react-icons";
+import { motion } from "framer-motion"; // Correct import for framer-motion
 import {
   Nav,
   NavbarContainer,
@@ -11,15 +12,18 @@ import {
   NavMenu,
   NavLinks,
   NavItem,
-} from "./NavbarStyles.js";
-import { useLocation, useHistory } from "react-router-dom";
+} from "./styles";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { data } from "../../data/NavbarData";
 import "./styles";
-import { color } from "framer-motion";
+
 function Navbar() {
   const [show, setShow] = useState(false);
-  let history = useHistory();
+  let navigate = useNavigate();
+
   let location = useLocation();
+
   const handleClick = () => {
     setShow(!show);
   };
@@ -37,7 +41,7 @@ function Navbar() {
       scrollTo(id);
     }
 
-    history.push(to);
+    navigate(to);
     setShow(false);
   };
 
@@ -46,13 +50,11 @@ function Navbar() {
       <Nav>
         <NavbarContainer>
           <NavLogo to="/">
-            <NavIcon src="./assets/logo.png" alt="logo">
-              Delta
-            </NavIcon>
+            <NavIcon src="./assets/logo.png" alt="logo" />
+            Delta
           </NavLogo>
           <MobileIcon onClick={handleClick}>
-            {" "}
-            {show ? <Fatimes /> : <CgMenuRight />}
+            {show ? <FaTimes /> : <CgMenuRight />}
           </MobileIcon>
           <NavMenu>
             {data.map((el, index) => (

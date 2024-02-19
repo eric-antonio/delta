@@ -3,12 +3,14 @@ import GlobalStyle from "./global/globalStyle";
 import Home from "./pages/Home";
 import Pricing from "./pages/Pricing";
 import Signup from "./pages/Signup";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <GlobalStyle />
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
