@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaRegProject, FaTimes } from "react-icons/fa";
+import { FaRProject, FaTimes } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { IconContext } from "react-icons";
 import {
@@ -13,15 +13,14 @@ import {
   NavItem,
 } from "./styles";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { data } from "../../data/NavbarData";
-import "./styles";
-import { color } from "framer-motion";
-function Navbar() {
-  const [show, setShow] = useState(false);
-  let navigate = useNavigate();
 
+const Navbar = () => {
+  const [show, setShow] = useState(false);
+
+  let navigate = useNavigate();
   let location = useLocation();
+
   const handleClick = () => {
     setShow(!show);
   };
@@ -48,15 +47,13 @@ function Navbar() {
       <Nav>
         <NavbarContainer>
           <NavLogo to="/">
-            <NavIcon src="./assets/logo.png" alt="logo"/>
-              Delta
-           
+            <NavIcon src="./assets/logo.png" alt="logo" />
+            Delta
           </NavLogo>
           <MobileIcon onClick={handleClick}>
-            {" "}
             {show ? <FaTimes /> : <CgMenuRight />}
           </MobileIcon>
-          <NavMenu>
+          <NavMenu show={show}>
             {data.map((el, index) => (
               <NavItem key={index}>
                 <NavLinks onClick={() => closeMobileMenu(el.to, el.id)}>
@@ -69,6 +66,6 @@ function Navbar() {
       </Nav>
     </IconContext.Provider>
   );
-}
+};
 
 export default Navbar;
