@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaRegProject, FaTimes } from "react-icons/fa";
 import { CgMenuRight } from "react-icons/cg";
 import { IconContext } from "react-icons";
-import { motion } from "framer-motion"; // Correct import for framer-motion
 import {
   Nav,
   NavbarContainer,
@@ -17,13 +16,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { data } from "../../data/NavbarData";
 import "./styles";
-
+import { color } from "framer-motion";
 function Navbar() {
   const [show, setShow] = useState(false);
   let navigate = useNavigate();
 
   let location = useLocation();
-
   const handleClick = () => {
     setShow(!show);
   };
@@ -41,7 +39,7 @@ function Navbar() {
       scrollTo(id);
     }
 
-    navigate(to);
+    navigate.push(to);
     setShow(false);
   };
 
@@ -50,10 +48,12 @@ function Navbar() {
       <Nav>
         <NavbarContainer>
           <NavLogo to="/">
-            <NavIcon src="./assets/logo.png" alt="logo" />
-            Delta
+            <NavIcon src="./assets/logo.png" alt="logo"/>
+              Delta
+           
           </NavLogo>
           <MobileIcon onClick={handleClick}>
+            {" "}
             {show ? <FaTimes /> : <CgMenuRight />}
           </MobileIcon>
           <NavMenu>
